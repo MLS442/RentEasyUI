@@ -1,12 +1,13 @@
-import { useState } from 'react'
+import { useEffect, useState} from 'react'
 
-export const TenantDashboard  = ({name,tickets,setTickets}) => {
+
+export const TenantDashboard  = ({name,tickets,setTickets,isLoading}) => {
 
     
     const [subject, setSubject] = useState('')
     const [description, setDescription] = useState('')
 
-    const handleAddTicket = () => {
+    const handleAddTicket = () => { 
         if(subject === '' || description === ''){
            return alert("The fields should not be empty")
         }
@@ -23,6 +24,31 @@ export const TenantDashboard  = ({name,tickets,setTickets}) => {
         setDescription('')
 
     }
+    
+    /*Fetching mockData: This method do not change the data in the state. It 
+    prevents data loss if the user write while the mock data is being fetched.
+    useEffect(() => {
+
+        const timer = setTimeout(() => {
+            setTickets(prev => [...prev, ...mockData])
+        }, 7000)
+
+       return () => {
+        clearTimeout(timer)
+       }
+    },[]);*/
+
+       /*this verify if the value of isLoading,
+       if its true, it will always show the loading spinner*/
+       
+       if(isLoading){
+        return (
+            <div>
+                <p>Loading...</p>
+            </div>
+        )
+    }
+
 
     return (
         <>
@@ -52,9 +78,9 @@ export const TenantDashboard  = ({name,tickets,setTickets}) => {
 
            <ul>
                {tickets.map(t => (<li key= {t.ticket_id}>
-                {t.ticket_id}, 
-                {t.tenant_id}, 
-                {t.subject}, 
+                {t.ticket_id},
+                {t.tenant_id},
+                {t.subject},   
                 {t.description},
                 {t.status}
                </li>))}

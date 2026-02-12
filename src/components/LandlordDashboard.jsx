@@ -1,5 +1,13 @@
 
-export const LandlordDashboard = ({name,tickets, fixTicket}) => {
+export const LandlordDashboard = ({name,tickets, fixTicket,isLoading}) => {
+
+        if(isLoading){
+        return (
+            <div>
+                <p>Loading...</p>
+            </div>
+        )
+    }
 
     return (
         <>
@@ -12,12 +20,10 @@ export const LandlordDashboard = ({name,tickets, fixTicket}) => {
                 {t.subject}, 
                 {t.description},
                 {t.status},   <button onClick={() => fixTicket(t.ticket_id)}>Mark as fixed</button>
+
+                <p>{t.status}</p>
                </li>))}
            </ul> <br />
-
-          
-
-           <p>{tickets.status}</p>
 
         </>
         
