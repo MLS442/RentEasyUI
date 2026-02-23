@@ -26,8 +26,5 @@ export const LandlordDashboard = ({name,tickets, fixTicket,isLoading}) => {
            </ul> <br />
 
         </>
-        
-
-        
     )
 }

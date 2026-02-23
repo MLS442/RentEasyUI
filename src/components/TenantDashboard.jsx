@@ -1,4 +1,4 @@
-import { useEffect, useState} from 'react'
+import { useState} from 'react'
 
 
 export const TenantDashboard  = ({name,tickets,setTickets,isLoading}) => {
@@ -22,7 +22,6 @@ export const TenantDashboard  = ({name,tickets,setTickets,isLoading}) => {
         setTickets([...tickets, newTicket])
         setSubject('')
         setDescription('')
-
     }
     
     /*Fetching mockData: This method do not change the data in the state. It 
