@@ -18,7 +18,7 @@ function App() {
 
   const handleFixTickets = (id) => {
     setTickets(tickets.map(t => {
-      if (t.ticket_id === id) {
+      if (t.ticketId === id) {
         const fixedTicket = { ...t, status: "Fixed" }
         return fixedTicket
       }
@@ -46,7 +46,7 @@ function App() {
 
   useEffect(() => {
     async function getMockData() {
-      const url = "https://jsonplaceholder.typicode.com/users/1/todos"
+      const url = "https://localhost:7130/Tickets"
       try {
         const response = await fetch(url)
         if (!response.ok) {
@@ -56,17 +56,9 @@ function App() {
         const result = await response.json()
         //console.log(result)
 
-        const newResult = result.map(adapt => {
+        
 
-          return {
-            ticket_id: adapt.id,
-            tenant_id: adapt.userId,
-            subject: adapt.title,
-            status: "Not Fixed"
-          }
-        })
-
-        setTickets(newResult)
+        setTickets(result)
       }
       catch {
         console.error('failed')

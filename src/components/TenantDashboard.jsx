@@ -12,8 +12,8 @@ export const TenantDashboard  = ({name,tickets,setTickets,isLoading}) => {
            return alert("The fields should not be empty")
         }
 
-        const newTicket = {ticket_id: crypto.randomUUID(), 
-            tenant_id: Date.now(), 
+        const newTicket = {ticketId: crypto.randomUUID(), 
+            tenantId: Date.now(), 
             subject: subject, 
             description: description,
             status: "Not Fixed"
@@ -76,9 +76,9 @@ export const TenantDashboard  = ({name,tickets,setTickets,isLoading}) => {
            <button onClick={handleAddTicket}>Report</button> <br />
 
            <ul>
-               {tickets.map(t => (<li key= {t.ticket_id}>
-                {t.ticket_id},
-                {t.tenant_id},
+               {tickets.map(t => (<li key= {t.ticketId}>
+                {t.ticketId},
+                {t.tenantId},
                 {t.subject},   
                 {t.description},
                 {t.status}
