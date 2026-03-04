@@ -1,5 +1,5 @@
 
-export const LandlordDashboard = ({name,tickets, fixTicket,isLoading}) => {
+export const LandlordDashboard = ({name,tickets, fixTicket,isLoading,tenants}) => {
 
         if(isLoading){
         return (
@@ -23,6 +23,20 @@ export const LandlordDashboard = ({name,tickets, fixTicket,isLoading}) => {
                </li>))}
            </ul> <br />
 
+           <div>
+              <h2>Tenants List</h2>
+           </div>
+
+           <ul>
+              {tenants.map(t => (<li key= {t.id}>
+                {t.id},
+                {t.fullName},
+                {t.address},
+                {t.email},
+                {t.phone},
+                {t.birthDate}
+              </li>))}
+           </ul>
         </>
     )
 }

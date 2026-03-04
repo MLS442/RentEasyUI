@@ -11,6 +11,7 @@ function App() {
   const tenant = "Alex"
   const landLord = "Mohamed"
   const [tickets, setTickets] = useState([])
+  const [tenants, setTenants] = useState([])
 
   const [isLoading, setIsLoading] = useState(true)
 
@@ -45,7 +46,7 @@ function App() {
 
 
   useEffect(() => {
-    async function getMockData() {
+    async function getMockTickets() {
       const url = "https://localhost:7130/Tickets"
       try {
         const response = await fetch(url)
@@ -56,7 +57,7 @@ function App() {
         const result = await response.json()
         //console.log(result)
 
-        
+       
 
         setTickets(result)
       }
@@ -67,7 +68,29 @@ function App() {
         setIsLoading(false)
       }
     }
-    getMockData()
+    getMockTickets()
+
+    async function getMockTenants() {
+      const url = "https://localhost:7130/Tenants"
+      try {
+        const response = await fetch(url)
+        if (!response.ok) {
+          throw new Error(`Response Status: ${response.status}`)
+        }
+
+        const result = await response.json()
+        //console.log(result)
+
+        setTenants(result)
+      }
+      catch {
+        console.error('failed')
+      }
+      finally {
+        setIsLoading(false)
+      }
+    }
+    getMockTenants()
   }, []);
 
   return (
@@ -80,6 +103,7 @@ function App() {
 
       <LandlordDashboard name={landLord}
         tickets={tickets}
+        tenants= {tenants}
         fixTicket={handleFixTickets}
         isLoading={isLoading} />
     </>
