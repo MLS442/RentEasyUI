@@ -12,6 +12,7 @@ function App() {
   const landLord = "Mohamed"
   const [tickets, setTickets] = useState([])
   const [tenants, setTenants] = useState([])
+  const [properties,setProperties] = useState([])
 
   const [isLoading, setIsLoading] = useState(true)
 
@@ -91,6 +92,29 @@ function App() {
       }
     }
     getMockTenants()
+
+    async function getMockProperties() {
+      const url = "https://localhost:7130/Properties"
+      try {
+        const response = await fetch(url)
+        if (!response.ok) {
+          throw new Error(`Response Status: ${response.status}`)
+        }
+
+        const result = await response.json()
+        //console.log(result)
+
+        setProperties(result)
+      }
+      catch {
+        console.error('failed')
+      }
+      finally {
+        setIsLoading(false)
+      }
+    }
+    getMockProperties()
+    
   }, []);
 
   return (
@@ -104,6 +128,7 @@ function App() {
       <LandlordDashboard name={landLord}
         tickets={tickets}
         tenants= {tenants}
+        properties= {properties}
         fixTicket={handleFixTickets}
         isLoading={isLoading} />
     </>

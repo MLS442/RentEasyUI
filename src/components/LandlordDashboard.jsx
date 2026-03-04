@@ -1,5 +1,5 @@
 
-export const LandlordDashboard = ({name,tickets, fixTicket,isLoading,tenants}) => {
+export const LandlordDashboard = ({name,tickets, fixTicket,isLoading,tenants,properties}) => {
 
         if(isLoading){
         return (
@@ -13,6 +13,10 @@ export const LandlordDashboard = ({name,tickets, fixTicket,isLoading,tenants}) =
         <>
            <h2>Hello {name} </h2>
 
+            <div>
+              <h2>Tickets List</h2>
+            </div>
+
            <ul>
                {tickets.map(t => (<li key= {t.ticketId}>
                 {t.ticketId}, 
@@ -20,7 +24,7 @@ export const LandlordDashboard = ({name,tickets, fixTicket,isLoading,tenants}) =
                 {t.subject}, 
                 {t.description},
                 {t.status},   <button onClick={() => fixTicket(t.ticketId)}>Mark as fixed</button>
-               </li>))}
+               </li>))} 
            </ul> <br />
 
            <div>
@@ -35,6 +39,22 @@ export const LandlordDashboard = ({name,tickets, fixTicket,isLoading,tenants}) =
                 {t.email},
                 {t.phone},
                 {t.birthDate}
+              </li>))}
+           </ul>
+
+         
+
+           <div>
+              <h2>Properties List</h2>
+           </div>
+
+           <ul>
+              {properties.map(p => (<li key= {p.id}>
+                {p.id},
+                {p.address},
+                {p.price},
+                {p.bedrooms},
+                {p.leaseEndDate}
               </li>))}
            </ul>
         </>
